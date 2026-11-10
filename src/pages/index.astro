@@ -1,16 +1,23 @@
 ---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const osiagniecia = (await getCollection('osiagniecia'))
+    .sort((a, b) => b.data.rok - a.data.rok)
+    .slice(0, 5);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Polscy sportowcy zimowi">
+<h1>Sukcesy polskich sportowców zimowych</h1>
+<p>Archiwum wyników z linkami do źródeł. Na tą chwilę skupiamy się do skoków narciarskich. </p>
+
+<h2>Najnowsze wpisy</h2>
+<ul>
+    {osiagniecia.map((o) => (
+        <li>
+            <a href={`/sportowcy/${o.data.sportowiec.id}`}>{o.data.sportowiec.id}</a>
+            : {o.data.rok}, {o.data.zawody}
+            </li>
+        ))}
+    </ul>
+    </BaseLayout>
