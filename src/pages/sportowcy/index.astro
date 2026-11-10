@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const sportowcy = (await getCollection('sportowcy')).sort((a, b) =>
+    a.data.nazwisko.localeCompare(b.data.nazwisko, 'pl')
+);
+---
+
+<BaseLayout title="Sportowcy">
+<h1>Sportowcy</h1>
+<ul>
+    {sportowcy.map((s) => (
+        <li>
+            <a href={`/sportowcy/${s.id}`}>{s.data.imie} {s.data.nazwisko}</a>
+            , {s.data.krotkiOpis}
+            </li>
+    ))}
+    </ul>
+    </BaseLayout>

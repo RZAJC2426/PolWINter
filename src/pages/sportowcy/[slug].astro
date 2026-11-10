@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
 export async function getStaticPaths() {
     const sportowcy = await getCollection('sportowcy');
@@ -18,20 +19,15 @@ const osiagniecia = wszystkie
     .sort((a, b) => b.data.rok - a.data.rok);
 ---
 
-<html lang="pl">
-    <head>
-        <meta charset="utf-8" />
-        <title>{s.data.imie} {s.data.nazwisko}</title>
-    </head>
-    <body>
-        <h1>{s.data.imie} {s.data.nazwisko}</h1>
-        <p>{s.data.krotkiOpis}</p>
-        <Content />
-        <h2>Osiągnięcia</h2>
-        <ul>
-            {osiagniecia.map((o) => (
-                <li>{o.data.rok}: {o.data.zawody}, {o.data.konkurencja} ({o.data.wynik})</li>
-            ))}
-        </ul>
-    </body>
-    </html>
+<BaseLayout title={`${s.data.imie} ${s.data.nazwisko}`} description={s.data.krotkiOpis}>
+<h1>{s.data.imie} {s.data.nazwisko}</h1>
+<p>{s.data.krotkiOpis}</p>
+<Content />
+
+<h2>Osiągnięcia</h2>
+<ul>
+    {osiagniecia.map((o) => (
+        <li>{o.data.rok}: {o.data.zawody}, {o.data.konkurencja} ({o.data.wynik})</li>
+    ))}
+    </ul>
+    </BaseLayout>

@@ -20,7 +20,7 @@ const osiagniecia = defineCollection({
         zawody: z.string(),
         miejsce: z.string(),
         konkurencja: z.string(),
-        wynik: z.enum(['zloto', 'srebro', 'braz', 'top5', 'top10', 'inne' ]),
+        wynik: z.enum(['zloto', 'srebro', 'braz', 'top5', 'top10', 'zwyciestwo', 'inne' ]),
         zrodlo: z.url(),    
     }),
 })
