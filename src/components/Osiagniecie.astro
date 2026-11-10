@@ -1,0 +1,53 @@
+---
+interface Props {
+    rok: number;
+    zawody: string;
+    konkurencja: string;
+    wynik: 'zloto' | 'srebro' | 'braz' | 'zwyciestwo' | 'top5' | 'top10' | 'inne';
+    zrodlo: string;
+}
+
+const { rok, zawody, konkurencja, wynik, zrodlo } = Astro.props;
+
+const etykiety = {
+    zloto: 'Zloto',
+    srebro: 'Srebro',
+    braz: 'Brąz',
+    zwyciestwo: 'Zwycięstwo',
+    top5: 'Top 5',
+    top10: 'Top 10',
+    inne: 'Wynik',
+};
+---
+
+<li class="osiagniecie">
+<span class="rok">{rok}</span>
+<span class={`odznaka ${wynik}`}>{etykiety[wynik]}</span>
+<span class="opis">{zawody}, {konkurencja}</span>
+<a href={zrodlo} target="_blank" rel="noopener noreferrer">źródło</a>
+</li>
+
+<style>
+.osiagniecie {
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+    list-style: none;
+}
+.rok {
+    font-weight: 700;
+    min-width: 3rem;
+}
+
+.odznaka {
+    padding: 0.1rem 0.5rem;
+    border-radius:999px;
+    font-size: 0.8rem;
+    background: #e5e7eb;
+}
+.zloto, .zwyciestwo { background: #fde68a; }
+.srebro { background: #d1d5db; }
+.braz { background: #fdba74; }
+</style>

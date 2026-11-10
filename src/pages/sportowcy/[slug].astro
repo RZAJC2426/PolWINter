@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Osiagniecie from '../../components/Osiagniecie.astro';
 
 export async function getStaticPaths() {
     const sportowcy = await getCollection('sportowcy');
@@ -27,7 +28,13 @@ const osiagniecia = wszystkie
 <h2>Osiągnięcia</h2>
 <ul>
     {osiagniecia.map((o) => (
-        <li>{o.data.rok}: {o.data.zawody}, {o.data.konkurencja} ({o.data.wynik})</li>
-    ))}
+        <Osiagniecie
+            rok={o.data.rok}
+            zawody={o.data.zawody}
+            konkurencja={o.data.konkurencja}
+            wynik={o.data.wynik}
+            zrodlo={o.data.zrodlo}
+            />
+        ))}
     </ul>
     </BaseLayout>
