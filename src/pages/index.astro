@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
 
 const osiagniecia = (await getCollection('osiagniecia'))
     .sort((a, b) => b.data.rok - a.data.rok)
