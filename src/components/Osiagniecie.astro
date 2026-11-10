@@ -10,7 +10,7 @@ interface Props {
 const { rok, zawody, konkurencja, wynik, zrodlo } = Astro.props;
 
 const etykiety = {
-    zloto: 'Zloto',
+    zloto: 'Złoto',
     srebro: 'Srebro',
     braz: 'Brąz',
     zwyciestwo: 'Zwycięstwo',
@@ -18,14 +18,20 @@ const etykiety = {
     top10: 'Top 10',
     inne: 'Wynik',
 };
+
+const wyrozniony = wynik === 'zloto' || wynik === 'zwyciestwo';
 ---
 
-<li class="osiagniecie">
-<span class="rok">{rok}</span>
-<span class={`odznaka ${wynik}`}>{etykiety[wynik]}</span>
-<span class="opis">{zawody}, {konkurencja}</span>
-<a href={zrodlo} target="_blank" rel="noopener noreferrer">źródło</a>
-</li>
+
+<tr class={wyrozniony ? 'top' : ''}>
+<td>{rok}</td>
+<td>
+zawody
+<span class="konkurencja">{konkurencja}</span>
+</td>
+<td class="wynik">{etykiety[wynik]}</td>
+<td><a href={zrodlo} target="_blank" rel="noopener noreferrer">źródło</a></td>
+</tr>
 
 <style>
 .osiagniecie {

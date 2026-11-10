@@ -1,0 +1,103 @@
+:root {
+    --snieg: #F2F6F8;
+    --lod: #CFDDE6;
+    --granat: #1B2A41;
+    --stal: #55657A;
+    --czerwien: #C8102E;
+    --font-naglowek: 'Barlow Condensed', sans-serif;
+    --font-tekst: 'Source Serif 4 Variable', Georgia, serif;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--snieg);
+    color: var(--granat);
+    font-family: var(--font-tekst);
+    font-size: 1.125rem;
+    line-height: 1.6;
+}
+
+nav, main {
+    max-width: 60rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+}
+
+nav {
+    display:flex;
+    gap: 1.5rem;
+    padding-block: 1.25rem;
+    font-family: var(--font-naglowek);
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+main {
+    padding-block: 3rem 5rem;
+}
+
+h1, h2 {
+    font-family: var(--font-naglowek);
+    font-weight: 700;
+    line-height: 1;
+    text-wrap: balance;
+}
+
+h1 {
+    font-size: clamp(3rem, 10vw, 6,5 rem);
+    margin: 0 0 1rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+    margin: 3rem 0 0.75rem;
+}
+
+p {
+    max-width:65ch;
+}
+
+a {
+    color: inherit;
+    text-decoration-color: var(--czerwien);
+    text-underline-offset: 0.2em;
+}
+
+a:focus-visible {
+    outline: 3px solid var(--czerwien);
+    outline-offset: 3px;
+}
+
+table {
+    width: 100%;
+    border-collapse:collapse;
+    font-variant-numeric: tabular-nums;
+}
+
+th, td {
+    text-align: left;
+    padding: 0.6 0.75rem 0.6rem 0;
+    border-bottom: 1px solid var(--lod);
+    vertical-align: baseline;
+}
+
+th {
+    font-family: var(--font-naglowek);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--stal);
+}
+
+.konkurencja {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--stal);
+}
+
+.top .wynik {
+    color: var(--czerwien);
+}

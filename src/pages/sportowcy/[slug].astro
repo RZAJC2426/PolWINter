@@ -26,7 +26,16 @@ const osiagniecia = wszystkie
 <Content />
 
 <h2>Osiągnięcia</h2>
-<ul>
+<table>
+    <thead>
+        <tr>
+            <th>Rok</th>
+            <th>Zawody</th>
+            <th>Wynik</th>
+            <th>Żródło</th>
+        </tr>
+    </thead>
+    <tbody>
     {osiagniecia.map((o) => (
         <Osiagniecie
             rok={o.data.rok}
@@ -35,6 +44,8 @@ const osiagniecia = wszystkie
             wynik={o.data.wynik}
             zrodlo={o.data.zrodlo}
             />
-        ))}
-    </ul>
+           ))}
+        </tbody>
+    </table>
+
     </BaseLayout>
