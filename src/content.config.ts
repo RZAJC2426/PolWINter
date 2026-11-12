@@ -1,6 +1,7 @@
 import { defineCollection, reference } from 'astro:content';
 import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
+import { slugi } from './data/dyscypliny';
 
 const sportowcy = defineCollection({
     loader: glob({pattern: '**/*.md', base: './src/content/sportowcy'}),
@@ -8,7 +9,9 @@ const sportowcy = defineCollection({
         imie: z.string(),
         nazwisko: z.string(),
         dataUrodzenia: z.coerce.date(),
+        dyscyplina: z.enum(slugi),
         krotkiOpis: z.string().max(200),
+        
     }),
 });
 
