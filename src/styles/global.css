@@ -5,7 +5,7 @@
     --stal: #55657A;
     --czerwien: #C8102E;
     --font-naglowek: 'Barlow Condensed', sans-serif;
-    --font-tekst: 'Source Serif 4 Variable', Georgia, serif;
+    --font-tekst: 'Ubuntu', system-ui, sans-serif;
 }
 
 *, *::before, *::after {
@@ -20,8 +20,8 @@ body {
     background: var(--snieg);
     color: var(--granat);
     font-family: var(--font-tekst);
-    font-size: 1.125rem;
-    line-height: 1.6;
+    font-size: 1.0625rem;
+    line-height: 1.55;
 }
 
 .wnetrze {
