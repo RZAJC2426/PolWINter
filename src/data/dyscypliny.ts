@@ -3,7 +3,7 @@ export const slugi = [
     'biegi-narciarskie',
     'kombinacja-norweska',
     'biathlon',
-    'lyzwiarsto-szybkie',
+    'lyzwiarstwo-szybkie',
     'short-track',
     'narciarstwo-alpejskie',
     'snowboard',

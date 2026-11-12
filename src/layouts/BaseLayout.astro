@@ -3,6 +3,8 @@ import '@fontsource/barlow-condensed/600.css';
 import '@fontsource/barlow-condensed/700.css';
 import '@fontsource-variable/source-serif-4';
 import '@/styles/global.css';
+import { slugi, nazwy } from '@/data/dyscypliny';
+
 interface Props {
     title: string;
     description?: string;
@@ -18,12 +20,32 @@ const { title, description = 'Sukcesy polskich sportowców zimowych' } = Astro.p
         <title>{title}</title>
     </head>
     <body>
-        <nav>
-            <a href="/">Start</a>
+    <header class="pasek">
+        <nav class="wnetrze" aria-label="Głowne">
+            <a class="marka" href="/">PolWINter</a>
             <a href="/sportowcy">Sportowcy</a>
+            <a href="/dyscypliny">Dyscypliny</a>
         </nav>
-        <main>
+    </header>
+
+        <main class="wnetrze">
             <slot />
         </main>
+
+        <footer class="stopka">
+            <div class="wnetrze">
+                <div>
+                    <p class="marka">PolWINter</p>
+                    <p> Archiwum sukcesów polskich sportowców zimowych. Każdy wynik posiada źródło i każda informacja przechodzi weryfikacje poprawności. Projekt jest w fazie beta </p>
+                </div>
+                <nav aria-label="Dyscypliny">
+                    <ul>
+                        {slugi.map((slug) => (
+                            <li><a href={`/dyscypliny/${slug}`}>{nazwy[slug]}</a></li>
+                        ))}
+                    </ul>
+                </nav>
+            </div>
+        </footer>
     </body>
 </html>

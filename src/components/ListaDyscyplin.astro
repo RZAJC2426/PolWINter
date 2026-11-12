@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import { slugi, nazwy } from '@/data/dyscypliny';
+
+const sportowcy = await getCollection('sportowcy');
+const ile = (slug: string) =>
+    sportowcy.filter((s) => s.data.dyscyplina === slug).length;
+---
+
+<ul class="dyscypliny">
+{slugi.map((slug) => {
+    const n = ile(slug);
+    return (
+        <li>
+        <a href={`/dyscypliny/${slug}`}>
+            <span class="nazwa">{nazwy[slug]}</span>
+            <span class="ile">{n > 0 ? n : 'wkrotce'}</span>
+            </a>
+        </li>
+        );
+    })}
+</ul>
+
+<style>
+.dyscypliny {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--lod);
+    text-decoration: none;
+}
+
+.nazwa {
+    font-family: var(--font-naglowek);
+    font-weight: 700;
+    font-size: clamp(1.75rem, 5vw, 2,75rem);
+    line-height: 1;
+}
+
+.ile {
+    font-variant-numeric: tabular-nums;
+    color: var(--stal);
+}
+
+a:hover .nazwa {
+    color: var(--czerwien);
+}
+</style>

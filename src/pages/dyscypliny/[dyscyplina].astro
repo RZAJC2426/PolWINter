@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { slugi, nazwy } from '@/data/dyscypliny';
+
+export function getStaticPaths() {
+    return slugi.map((slug) => ({
+        params: { dyscyplina: slug },
+        props: { slug },
+    }));
+}
+
+const { slug } = Astro.props;
+const nazwa = nazwy[slug as keyof typeof nazwy];
+
+const sportowcy = (
+    await getCollection('sportowcy', ({ data }) => data.dyscyplina === slug)
+).sort((a,b) => a.data.nazwisko.localeCompare(b.data.nazwisko, 'pl'));
+---
+
+<BaseLayout title={nazwa} description={`Polscy sportowcy w dyscyplinie: ${nazwa}.`}>
+    <h1>{nazwa}</h1>
+
+    {sportowcy.length > 0 ? (
+        <ul>
+            {sportowcy.map((s) => (
+                <li>
+                    <a href={`/sportowcy/${s.id}`}>{s.data.imie} {s.data.nazwisko} </a>
+                    , {s.data.krotkiOpis}
+                    </li>
+            ))}
+            </ul>
+    ) : (
+        <p> Ta dyscyplina czeka na pierwsze wpisy. </p>
+    )}
+</BaseLayout>
+

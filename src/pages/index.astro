@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import ListaDyscyplin from '@/components/ListaDyscyplin.astro';
 
 const osiagniecia = (await getCollection('osiagniecia'))
     .sort((a, b) => b.data.rok - a.data.rok)
@@ -11,6 +12,8 @@ const osiagniecia = (await getCollection('osiagniecia'))
 <h1>Sukcesy polskich sportowców zimowych</h1>
 <p>Archiwum wyników z linkami do źródeł. Na tą chwilę skupiamy się do skoków narciarskich. </p>
 
+<h2>Dyscypliny</h2>
+<ListaDyscyplin />
 <h2>Najnowsze wpisy</h2>
 <ul>
     {osiagniecia.map((o) => (

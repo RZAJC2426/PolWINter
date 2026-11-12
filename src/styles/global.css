@@ -14,6 +14,9 @@
 
 body {
     margin: 0;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
     background: var(--snieg);
     color: var(--granat);
     font-family: var(--font-tekst);
@@ -21,23 +24,69 @@ body {
     line-height: 1.6;
 }
 
-nav, main {
+.wnetrze {
+    width: 100%;
     max-width: 60rem;
     margin-inline: auto;
     padding-inline: 1.25rem;
 }
 
-nav {
-    display:flex;
-    gap: 1.5rem;
-    padding-block: 1.25rem;
-    font-family: var(--font-naglowek);
-    font-weight: 600;
-    font-size: 1.25rem;
+main {
+    flex: 1;
+    padding-block: 3rem 5rem;
 }
 
-main {
-    padding-block: 3rem 5rem;
+.pasek {
+    border-bottom: 1px solid var(--lod)
+}
+
+.pasek nav {
+    display:flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding-block: 1rem;
+    font-family: var(--font-naglowek);
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.pasek a {
+    text-decoration: none;
+}
+
+.pasek .marka {
+    margin-right: auto;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.stopka {
+    background: var(--granat);
+    color: var(--snieg);
+    padding-block: 3rem;
+}
+
+.stopka .wnetrze {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat (auto-fit, minmax(16rem, 1fr));
+}
+
+.stopka .marka {
+    font-family: var(--font-naglowek);
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+}
+
+.stopka ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.stopka a {
+    text-decoration-color: var(--lod);
 }
 
 h1, h2 {
