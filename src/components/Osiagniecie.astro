@@ -2,12 +2,13 @@
 interface Props {
     rok: number;
     zawody: string;
+    miejsce: string;
     konkurencja: string;
     wynik: 'zloto' | 'srebro' | 'braz' | 'zwyciestwo' | 'top5' | 'top10' | 'inne';
     zrodlo: string;
 }
 
-const { rok, zawody, konkurencja, wynik, zrodlo } = Astro.props;
+const { rok, zawody, miejsce, konkurencja, wynik, zrodlo } = Astro.props;
 
 const etykiety = {
     zloto: 'Złoto',
@@ -26,7 +27,7 @@ const wyrozniony = wynik === 'zloto' || wynik === 'zwyciestwo';
 <tr class={wyrozniony ? 'top' : ''}>
 <td>{rok}</td>
 <td>
-zawody
+{zawody}, {miejsce}
 <span class="konkurencja">{konkurencja}</span>
 </td>
 <td class="wynik">{etykiety[wynik]}</td>
