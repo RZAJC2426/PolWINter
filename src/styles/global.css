@@ -141,7 +141,8 @@ th {
     color: var(--stal);
 }
 
-.konkurencja {
+.konkurencja
+.partnerzy {
     display: block;
     font-size: 0.95rem;
     color: var(--stal);

@@ -19,6 +19,12 @@ const sportowcy = (
 ---
 
 <BaseLayout title={nazwa} description={`Polscy sportowcy w dyscyplinie: ${nazwa}.`}>
+   <Okruszki 
+   sciezka={[
+    { nazwa: 'Dyscypliny', href: '/dyscypliny' }, 
+    { nazwa }, 
+   ]}
+   />
     <h1>{nazwa}</h1>
 
     {sportowcy.length > 0 ? (

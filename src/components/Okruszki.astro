@@ -1,0 +1,50 @@
+---
+interface Okruszek {
+    nazwa: string;
+    href?: string;
+}
+
+interface Props {
+    sciezka: Okruszek[];
+}
+
+const { sciezka } = Astro.props;
+const wszystkie: Okruszek[] = [{ nazwa: 'Start', href: '/'}, ...sciezka];
+---
+
+<nav class="okruszki" aria-label="Okruszki">
+    <ol>
+    {wszystkie.map((o, i) => (
+        <li>
+            {i < wszystkie.length - 1 && o.href ? (
+                <a href={o.href}>{o.nazwa}</a>
+            ) : (
+                <span aria-current="page">{o.nazwa}</span>
+            )}
+        </li>
+    ))}
+</ol>
+</nav>
+
+<style>
+    .okruszki {
+
+        margin-bottom: 1.5rem;
+        font-size: 0.95rem;
+        color: var(--stal);
+    }
+    ol {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    li + li::before {
+        content: '/';
+        margin-right: 0.5rem;
+    }
+
+</style>

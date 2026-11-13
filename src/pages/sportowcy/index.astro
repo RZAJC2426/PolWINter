@@ -8,6 +8,7 @@ const sportowcy = (await getCollection('sportowcy')).sort((a, b) =>
 ---
 
 <BaseLayout title="Sportowcy">
+<Okruszki sciezka={[{ nazwa: 'Sportowcy' }]} />
 <h1>Sportowcy</h1>
 <ul>
     {sportowcy.map((s) => (

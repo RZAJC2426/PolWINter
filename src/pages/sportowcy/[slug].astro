@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Osiagniecie from '@/components/Osiagniecie.astro';
+import { nazwy } from '@/data/dyscypliny';
 
 export async function getStaticPaths() {
     const sportowcy = await getCollection('sportowcy');
@@ -10,6 +11,10 @@ export async function getStaticPaths() {
         props: { s },
     }));
 }
+
+const zawodnicy = await getCollection('sportowcy');
+const poId = new Map(zawodnicy.map((z) => [z.id, z] as const));
+
 
 const { s } = Astro.props;
 const { Content } = await render(s);
@@ -21,6 +26,16 @@ const osiagniecia = wszystkie
 ---
 
 <BaseLayout title={`${s.data.imie} ${s.data.nazwisko}`} description={s.data.krotkiOpis}>
+<Okruszki 
+    sciezka={[
+        {nazwa: 'Dyscypliny', href: '/dyscypliny' },
+        {
+            nazwa: nazwy[s.data.dyscyplina],
+            href: `/dyscypliny/${s.data.dyscyplina}`,
+        },
+        { nazwa: `${s.data.imie} ${s.data.nazwisko}` },
+    ]}
+    />
 <h1>{s.data.imie} {s.data.nazwisko}</h1>
 <p>{s.data.krotkiOpis}</p>
 <Content />
@@ -36,7 +51,18 @@ const osiagniecia = wszystkie
         </tr>
     </thead>
     <tbody>
-    {osiagniecia.map((o) => (
+    {osiagniecia.map((o) => {
+        const partnerzy = o.data.sportowcy
+        .filter((r) => r.id !== s.id)
+        .map((r) => {
+            const p = poId.get(r.id);
+            return {
+                id: r.id,
+                nazwa: p ? `${p.data.imie} ${p.data.nazwisko}` : r.id,
+            };
+        });
+
+        return (
         <Osiagniecie
             rok={o.data.rok}
             zawody={o.data.zawody}
@@ -44,8 +70,10 @@ const osiagniecia = wszystkie
             konkurencja={o.data.konkurencja}
             wynik={o.data.wynik}
             zrodlo={o.data.zrodlo}
+            partnerzy={partnerzy}
             />
-           ))}
+        );
+    })}
         </tbody>
     </table>
 

@@ -6,9 +6,10 @@ interface Props {
     konkurencja: string;
     wynik: 'zloto' | 'srebro' | 'braz' | 'zwyciestwo' | 'top5' | 'top10' | 'inne';
     zrodlo: string;
+    partnerzy?: { id: string; nazwa: string } [];
 }
 
-const { rok, zawody, miejsce, konkurencja, wynik, zrodlo } = Astro.props;
+const { rok, zawody, miejsce, konkurencja, wynik, zrodlo, partnerzy = []  } = Astro.props;
 
 const etykiety = {
     zloto: 'Złoto',
@@ -28,6 +29,19 @@ const wyrozniony = wynik === 'zloto' || wynik === 'zwyciestwo';
 <td>{rok}</td>
 <td>
 {zawody}, {miejsce}
+
+{partnerzy.length > 0 && (
+    <span class="partnerzy">
+        razem z:{' '}
+        {partnerzy.map((p, i) => (
+            <>
+                {i > 0 && ', '}
+                <a href={`/sportowcy/${p.id}`}>{p.nazwa}</a>
+            </>
+        ))}
+    </span>
+)}
+
 <span class="konkurencja">{konkurencja}</span>
 </td>
 <td class="wynik">{etykiety[wynik]}</td>
