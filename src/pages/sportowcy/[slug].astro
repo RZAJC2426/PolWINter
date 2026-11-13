@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Osiagniecie from '@/components/Osiagniecie.astro';
 import { nazwy } from '@/data/dyscypliny';
+import Okruszki from '@/components/Okruszki.astro';
 
 export async function getStaticPaths() {
     const sportowcy = await getCollection('sportowcy');
@@ -21,7 +22,7 @@ const { Content } = await render(s);
 
 const wszystkie = await getCollection('osiagniecia');
 const osiagniecia = wszystkie
-    .filter((o) => o.data.sportowiec.id === s.id)
+    .filter((o) => o.data.sportowcy.some((r) => r.id === s.id))
     .sort((a, b) => b.data.rok - a.data.rok);
 ---
 

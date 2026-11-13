@@ -18,7 +18,7 @@ const osiagniecia = (await getCollection('osiagniecia'))
 <ul>
     {osiagniecia.map((o) => (
         <li>
-            <a href={`/sportowcy/${o.data.sportowiec.id}`}>{o.data.sportowiec.id}</a>
+            <a href={`/sportowcy/${o.data.sportowcy[0].id}`}>{o.data.sportowcy[0].id}</a>
             : {o.data.rok}, {o.data.zawody}
             </li>
         ))}

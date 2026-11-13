@@ -18,7 +18,7 @@ const sportowcy = defineCollection({
 const osiagniecia = defineCollection({
     loader: glob({ pattern: '**/*.json', base: './src/content/osiagniecia' }),
     schema: z.object({
-        sportowiec: reference('sportowcy'),
+        sportowcy: z.array(reference('sportowcy')).min(1),
         rok: z.number().int(),
         zawody: z.string(),
         miejsce: z.string(),

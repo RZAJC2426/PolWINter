@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import Okruszki from '@/components/Okruszki.astro';
 
 const sportowcy = (await getCollection('sportowcy')).sort((a, b) =>
     a.data.nazwisko.localeCompare(b.data.nazwisko, 'pl')
