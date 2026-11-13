@@ -141,7 +141,7 @@ th {
     color: var(--stal);
 }
 
-.konkurencja
+
 .partnerzy {
     display: block;
     font-size: 0.95rem;
@@ -150,4 +150,12 @@ th {
 
 .top .wynik {
     color: var(--czerwien);
+}
+
+.tabela {
+    overflow-x:auto;
+}
+
+.tabela table {
+    min-width: 40rem;
 }
