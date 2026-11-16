@@ -1,4 +1,5 @@
 ---
+import { etykiety } from '@/utils/osiagniecia';
 interface Props {
     rok: number;
     zawody: string;
@@ -10,16 +11,6 @@ interface Props {
 }
 
 const { rok, zawody, miejsce, konkurencja, wynik, zrodlo, partnerzy = []  } = Astro.props;
-
-const etykiety = {
-    zloto: 'Złoto',
-    srebro: 'Srebro',
-    braz: 'Brąz',
-    zwyciestwo: 'Zwycięstwo',
-    top5: 'Top 5',
-    top10: 'Top 10',
-    inne: 'Wynik',
-};
 
 const wyrozniony = wynik === 'zloto' || wynik === 'zwyciestwo';
 ---

@@ -2,10 +2,24 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ListaDyscyplin from '@/components/ListaDyscyplin.astro';
+import { getCollection } from 'astro:content';
+import { czas, etykiety } from '@/utils/osiagniecia';
 
-const osiagniecia = (await getCollection('osiagniecia'))
-    .sort((a, b) => b.data.rok - a.data.rok)
-    .slice(0, 5);
+const [osiagniecia, sportowcy] = await Promise.all([
+    getCollection('osiagniecia'),
+    getCollection('sportowcy'),
+]);
+
+const poId = new Map(sportowcy.map((s) => [s.id, s] as const));
+const nazwa = (id: string) => {
+    const s = poId.get(id);
+    return s ? `${s.data.imie} ${s.data.nazwisko}` : id;
+};
+
+const najnowsze = osiagniecia
+.sort((a, b) => czas(b.data) - czas(a.data))
+.slice(0, 5);
+
 ---
 
 <BaseLayout title="Polscy sportowcy zimowi">
